@@ -7,6 +7,7 @@ Deeplasmid is a machine learning tool used to distinguish plasmids from bacteria
 Input: .fasta file 
 
 Output: Directory of results 
+
 The output file predictions.txt contains plasmid predictions for each contig in the input file. Each contig is given a 'score'; a value closer to 1.0 indicates a high probability of being a plasmid. This score will be listed after the contig/node name. 
 
 - Longer than 330k bases (possibly a chromosome or megaplasmid)
