@@ -9,7 +9,7 @@ Input: .fasta file
 Output: Directory of results 
 
 ## Explanation of Docker 
-
+... 
 
 To run the Deeplasmid Docker container, you first need to install the docker on your system. Then make an account and register on dockerhub. Then pull the deeplasmid image from dockerhub using the following: 
 
