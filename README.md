@@ -16,6 +16,26 @@ The output file predictions.txt contains plasmid predictions for each contig in 
 - Ambiguous have scores around 0.5 (gray zone)
 - Chromosome (non-plasmid) with score near 0.0
 
+## Explanation of Docker 
+
+Docker is a platform that allows you to package and run applications in isolated environments called containers. Containers bundle all the necessary software and dependencies needed for the application, so it runs the same way regardless of the system it's on. This means users can run Deeplasmid with all of the necessary dependencies without needing to manually install them. To run the container, pull the Docker image and run it. Docker containers are lightweight, efficient, and ideal for deploying applications consistently across different environments.
+
+### Running the Container 
+
+To run the Deeplasmid Docker container, you first need to install the docker on your system. Then make an account and register on dockerhub. Then pull the deeplasmid image from dockerhub using the following: 
+
+```
+docker login
+docker pull billandreo/deeplasmid-cpu-ubuntu2
+```
+
+Run Deeplasmid for plasmid identification using the following command:
+```
+docker run -it -v /path/to/input/fasta:/srv/jgi-ml/classifier/dl/in.fasta -v /path/to/output/directory:/srv/jgi-ml/classifier/dl/outdir billandreo/deeplasmid-cpu-ubuntu2 deeplasmid.sh in.fasta outdir
+```
+* Make sure to change the input file path (/path/to/input/fasta) and the output directory path (/path/to/output/directory) with full file paths to the corresponding input file and output directory 
+* Depending on user permissions, the docker pull command may need to be run with sudo 
+
 ### Alternative Docker Image with GPU support 
 
 ```
@@ -37,27 +57,6 @@ Run Deeplasmid for plasmid identification with GPU using the command below:
     sudo docker rmi ...ids....
     sudo docker build -t billandreo/deeplasmid.tf.gpu3 -f Dockerfile.GPU3 .
 ```
-
-## Explanation of Docker 
-
-Docker is a platform that allows you to package and run applications in isolated environments called containers. Containers bundle all the necessary software and dependencies needed for the application, so it runs the same way regardless of the system it's on. This means users can run Deeplasmid with all of the necessary dependencies without needing to manually install them. To run the container, pull the Docker image and run it. Docker containers are lightweight, efficient, and ideal for deploying applications consistently across different environments.
-
-### Running the Container 
-
-To run the Deeplasmid Docker container, you first need to install the docker on your system. Then make an account and register on dockerhub. Then pull the deeplasmid image from dockerhub using the following: 
-
-```
-docker login
-docker pull billandreo/deeplasmid-cpu-ubuntu2
-```
-
-Running Deeplasmid to identifiy plasmids, use the following:
-```
-docker run -it -v /path/to/input/fasta:/srv/jgi-ml/classifier/dl/in.fasta -v /path/to/output/directory:/srv/jgi-ml/classifier/dl/outdir billandreo/deeplasmid-cpu-ubuntu2 deeplasmid.sh in.fasta outdir
-```
-* Make sure to change the input file path (/path/to/input/fasta) and the output directory path (/path/to/output/directory) with full file paths to the corresponding input file and output directory 
-* Depending on user permissions, the docker pull command may need to be run with sudo 
-
 
 
 ## Citations
